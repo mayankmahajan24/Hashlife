@@ -1,30 +1,26 @@
 var express = require('express');
+var crypto = require('crypto');
 var router = express.Router();
 
 /* GET users listing. */
 router.get('/:filename', function(req, res) {
   //res.render('respond with a resource');
   	N = 256;
- 	//s = new Array(N+1).join((Math.random().toString(36)+'00000000000000000').slice(2, 18)).slice(0, N);
- 	s = stringGen();
+ 	s = randomValueBase64(16);
     doc = {name: req.params.filename, password: s};
     });
     connection.collection('passwords').insert(doc, function (err){
-
-
-
 });
 
-function stringGen()
-{
-    var text = " ";
 
-    var charset = "abcdefghijklmnopqrstuvwxyz0123456789";
 
-    for( var i=0; i < 256; i++ )
-        text += charset.charAt(Math.floor(Math.random() * charset.length));
-
-    return text;
+function randomValueBase64 (len) {
+    return crypto.randomBytes(Math.ceil(len * 3 / 4))
+        .toString('base64')   // convert to base64 format
+        .slice(0, len)        // return required number of characters
+        .replace(/\+/g, '0')  // replace '+' with '0'
+        .replace(/\//g, '0'); // replace '/' with '0'
 }
+
 
 module.exports = router;
