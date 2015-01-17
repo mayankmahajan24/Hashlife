@@ -60,7 +60,7 @@ app.get('/addfile/:filename', function(req, res) {
 
     });
 
-    res.render("submit", {name: req.params.filename})
+    res.render("addfile", {name: req.params.filename})
 });
 
 app.use('/', routes);
