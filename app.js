@@ -11,7 +11,7 @@ var routes = require('./routes/index');
 //var addfile = require('./routes/addfile');
 
 var app = express();
-app.listen(process.env.VCAP_APP_PORT || 3000);
+//app.listen(process.env.VCAP_APP_PORT || 3000);
 
 
 // view engine setup
