@@ -63,6 +63,8 @@ app.get('/addfile/:filename', function(req, res) {
     res.render("addfile", {name: req.params.filename})
 });
 
+//app.use('/sendtoken', sendtoken);
+
 app.use('/', routes);
 
 
