@@ -5,6 +5,6 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>{{ name }} of age {{age}} added</h1>
+    <h1>{{ name }} added</h1>
   </body>
 </html>

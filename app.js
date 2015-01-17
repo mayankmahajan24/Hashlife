@@ -8,14 +8,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var routes = require('./routes/index');
-var addfile = require('./routes/addfile');
+//var addfile = require('./routes/addfile');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
+app.set('view engine', 'hjs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -25,12 +24,27 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/addfile', addfile);
+//app.use('/addfile', addfile);
 
 mongoose.connect('mongodb://127.0.0.1/mobiledata');
 var connection = mongoose.connection;
 mongoose.model('list', {name: String, password: String}, 'passwords');
+
+app.get('/addfile/:filename', function(req, res) {
+  //res.render('respond with a resource');
+    N = 256;
+    s = new Array(N+1).join((Math.random().toString(36)+'00000000000000000').slice(2, 18)).slice(0, N);
+
+    doc = {name: req.params.filename, password: s};
+    connection.collection('passwords').insert(doc, function (err){
+
+    });
+
+    res.render("submit", {name: req.params.filename})
+});
+
+app.use('/', routes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -38,6 +52,7 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
+
 
 // error handlers
 
