@@ -8,6 +8,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var routes = require('./routes/index');
+var passwordless = require('passwordless');
+
+var MongoStore = require('passwordless-mongostore');
+
 //var addfile = require('./routes/addfile');
 
 var app = express();
@@ -44,14 +48,14 @@ mongoose.connect(uristring, function (err, res) {
 });
 
 var connection = mongoose.connection;
-mongoose.model('list', {name: String, password: String}, 'passwords');
+mongoose.model('list', {name: String, password: String, author: String, token: String}, 'passwords');
 
 app.get('/addfile/:filename', function(req, res) {
   //res.render('respond with a resource');
     N = 256;
     s = new Array(N+1).join((Math.random().toString(36)+'00000000000000000').slice(2, 18)).slice(0, N);
 
-    doc = {name: req.params.filename, password: s};
+    doc = {name: req.params.filename, password: s, token: req.query.token, author: req.query.author};
     connection.collection('passwords').insert(doc, function (err){
 
     });

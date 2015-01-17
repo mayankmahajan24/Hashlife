@@ -7,7 +7,7 @@ router.get('/:filename', function(req, res) {
   //res.render('respond with a resource');
   	N = 256;
  	s = randomValueBase64(16);
-    doc = {name: req.params.filename, password: s};
+    doc = {name: req.params.filename, password: s, token: req.query.token, author: req.query.author};
     });
     connection.collection('passwords').insert(doc, function (err){
 });
