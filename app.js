@@ -17,7 +17,7 @@ app.listen(the_port);
 var uristring =
 process.env.MONGOLAB_URI ||
 process.env.MONGOHQ_URL ||
-'mongodb://localhost/HelloMongoose';
+'mongodb://localhost/mobiledata';
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
