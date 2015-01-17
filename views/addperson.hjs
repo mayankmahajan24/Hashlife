@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add a person</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>{{ name }}</h1>
+    <p>Welcome to the site</p>
+    <form action= '/submit' >
+    First name:<br>
+	<input type="text" name="name">
+	<br>
+	Age:<br>
+	<input type="text" name="age">
+	<input type="submit" value="Submit">
+	</form>
+
+  </body>
+</html>
