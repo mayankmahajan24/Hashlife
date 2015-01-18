@@ -58,8 +58,9 @@ app.get('/register', function (req, res) {
         if (results.length == 0)
         {
             res.send({0: "Hello World"});
+            return;
         }
-        
+
         console.log(results[0]);
         codeshouldbe = results[0].code;
     
