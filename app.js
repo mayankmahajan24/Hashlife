@@ -95,7 +95,7 @@ app.get("/getkey", function (req, res) {
         if (results.length == 0)
             res.send({0: "failed"});
         else{
-            res.send({0: results[0].pkey);
+            res.send({0: results[0].pkey});
             }
         return;
 
