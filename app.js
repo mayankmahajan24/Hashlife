@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var client = require('twilio')('ACec120bce9d6649ee44e22fc3d43e9c68', '902572dba95f5e11aa9cd0946a57d7e6');
+var client = require('twilio')('SID', 'AUTH_TOKEN'); //removed for privacy
 var http = require("http");
 
 var routes = require('./routes/index');
