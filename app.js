@@ -86,10 +86,9 @@ app.get('/register', function (req, res) {
            
         }
 
-    });
+        res.send({0: "ERROR"});
 
-
-    res.send({0: "Hello World"});
+     });
 
 });
 
