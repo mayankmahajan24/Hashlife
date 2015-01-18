@@ -86,7 +86,7 @@ app.get('/register', function (req, res) {
     });
 
 
-
+    res.send({0: "Hello World"});
 
 });
 
@@ -94,16 +94,14 @@ app.get("/getkey", function (req, res) {
     mongoose.model('list').find({phone: req.query.phone}, function(err, results){
         res.send(results[0].pkey);
     });
+
+    res.send({0: "Hello World");
 });
 
 
 app.post('/incoming', function(req, res) {
   // Extract the From and Body values from the POST data
-  console.log("inside incoming");
-  var from = req.body.From;
-
-  console.log(req.body.Body + " " + from);
-  
+  var from = req.body.From;  
   // Return sender a very nice message
   // twiML to be executed when SMS is received
   var newcode = Math.floor(Math.random() * 899999 + 100000);
