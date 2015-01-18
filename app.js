@@ -51,14 +51,29 @@ mongoose.model('kode', {phone: String, code: String}, 'codes');
 
 app.get('/register', function (req, res) {
 
-    doc = {phone: req.query.phone, pkey: req.query.pkey};
-    connection.collection('pkeys').remove({phone: req.query.phone}, function (err) {
+    doc = {phone: req.query.phone, pkey: req.query.pkey, code: req.query.code};
+
+    mongoose.model('kode').find({phone: req.query.phone}, function(err, results) {
+        var codeshouldbe = results[0].code;
 
     });
-    connection.collection('pkeys').insert(doc, function (err){
 
-    });
-    res.send({0: "Success"});
+    if (codeshouldbe == req.query.code)
+    {
+      connection.collection('pkeys').remove({phone: req.query.phone}, function (err) {
+
+     });
+      connection.collection('pkeys').insert(doc, function (err){
+
+      });
+     res.send({0: "Success"});
+
+    }
+
+    else {
+        res.send({0: "Failure"});
+    }
+
 });
 
 app.get("/getkey", function (req, res) {
@@ -77,7 +92,7 @@ app.post('/incoming', function(req, res) {
   
   // Return sender a very nice message
   // twiML to be executed when SMS is received
-  let newcode = Math.floor(Math.random() * 899999 + 100000);
+  var newcode = Math.floor(Math.random() * 899999 + 100000);
   var twiml = '<Response><Sms>' + newcode + '</Sms></Response>';
    connection.collection('codes').insert({phone: from, code: newcode }, function (err) {});
 
