@@ -59,6 +59,9 @@ app.get('/register', function (req, res) {
     
 
     codeshouldbe += "";
+
+    console.log("codeshouldbe " + codeshouldbe);
+    console.log("actual " + req.query.code);
     if (codeshouldbe == req.query.code)
     {
         console.log("Corfect code!");
