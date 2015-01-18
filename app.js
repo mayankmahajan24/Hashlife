@@ -61,12 +61,7 @@ app.get('/register', function (req, res) {
                 res.status(200).end();
                 return;
         }
-
-        console.log(results[0]);
         codeshouldbe = results[0].code;
-    
-    
-
         codeshouldbe = codeshouldbe + "";
         if (codeshouldbe == req.query.code)
         {
@@ -102,8 +97,8 @@ app.get("/getkey", function (req, res) {
         }
         else{
             res.send({0: results[0].pkey});
+            return;
             }
-        return;
 
     });
 });
