@@ -74,14 +74,14 @@ app.get('/register', function (req, res) {
 
           });
          
-         res.end({0: "Success"});
+         res.send({0: "Success"});
          return;
 
 
         }
 
         else {
-            res.end({0: "Failure"});
+            res.send({0: "Failure"});
             return;
            
         }
