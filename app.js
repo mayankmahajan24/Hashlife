@@ -55,6 +55,7 @@ app.get('/register', function (req, res) {
     doc = {phone: req.query.phone, pkey: req.query.pkey};
     var fn = "+" + req.query.phone;
     mongoose.model('kode').find({phone: fn}, function(err, results) {
+        console.log(results[0]);
         codeshouldbe = results[0].code;
     });
     
