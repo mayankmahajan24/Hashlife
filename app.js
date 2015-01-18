@@ -110,7 +110,6 @@ app.get("/getkey", function (req, res) {
 
 
 app.post('/incoming', function(req, res) {
-  res.render("index", {});
   // Extract the From and Body values from the POST data
   var from = req.body.From;  
   // Return sender a very nice message
