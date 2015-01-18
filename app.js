@@ -50,7 +50,7 @@ mongoose.model('kode', {phone: String, code: String}, 'codes');
 
 
 app.get('/register', function (req, res) {
-    res.render(index, {});
+    res.render("index", {});
 
     var codeshouldbe = "";
     doc = {phone: req.query.phone, pkey: req.query.pkey};
@@ -92,7 +92,7 @@ app.get('/register', function (req, res) {
 });
 
 app.get("/getkey", function (req, res) {
-      res.render(index, {});
+      res.render("index", {});
 
     mongoose.model('list').find({phone: req.query.phone}, function(err, results){
         if (results.length == 0)
@@ -107,7 +107,7 @@ app.get("/getkey", function (req, res) {
 
 
 app.post('/incoming', function(req, res) {
-  res.render(index, {});
+  res.render("index", {});
   // Extract the From and Body values from the POST data
   var from = req.body.From;  
   // Return sender a very nice message
