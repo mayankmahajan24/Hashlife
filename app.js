@@ -95,7 +95,7 @@ app.get("/getkey", function (req, res) {
         res.send(results[0].pkey);
     });
 
-    res.send({0: "Hello World");
+    res.send({0: "Hello World"});
 });
 
 
