@@ -57,8 +57,8 @@ app.get('/register', function (req, res) {
     mongoose.model('kode').find({phone: fn}, function(err, results) {
         if (results.length == 0)
         {
-            res.send({0: "Hello World"});
-            return;
+                res.status(200).end();
+                return;
         }
 
         console.log(results[0]);
