@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res) {
 
- 	res.write({"0": "Hello World"});
+ 	//res.write({"0": "Hello World"});
  	res.render("index", {});
 
 });
