@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var client = require('twilio')('', '');
+var client = require('twilio')('ACec120bce9d6649ee44e22fc3d43e9c68', '902572dba95f5e11aa9cd0946a57d7e6');
 var http = require("http");
 
 var routes = require('./routes/index');
@@ -104,7 +104,10 @@ module.exports = app;
 // Create a function to handle our incoming SMS requests (POST request)
 app.post('/incoming', function(req, res) {
   // Extract the From and Body values from the POST data
+  console.log("inside incoming");
   var from = req.body.From;
+
+    sys.log(req.body.Body + " " + from);
   
   // Return sender a very nice message
   // twiML to be executed when SMS is received
