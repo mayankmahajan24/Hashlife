@@ -70,7 +70,7 @@ app.post('/incoming', function(req, res) {
   console.log("inside incoming");
   var from = req.body.From;
 
-    sys.log(req.body.Body + " " + from);
+  console.log(req.body.Body + " " + from);
   
   // Return sender a very nice message
   // twiML to be executed when SMS is received
