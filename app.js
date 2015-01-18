@@ -81,6 +81,7 @@ app.get('/register', function (req, res) {
           });
          
          res.send({0: "Success"});
+         res.end();
          return;
 
 
