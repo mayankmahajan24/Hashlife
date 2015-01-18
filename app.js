@@ -35,9 +35,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use('/addfile', addfile);
-
-//mongoose.connect('mongodb://127.0.0.1/mobiledata');
+mongoose.connect('mongodb://127.0.0.1/mobiledata');
 
 mongoose.connect(uristring, function (err, res) {
   if (err) {
@@ -48,9 +46,9 @@ mongoose.connect(uristring, function (err, res) {
 });
 
 var connection = mongoose.connection;
-mongoose.model('list', {name: String, password: String, author: String, token: String}, 'passwords');
+mongoose.model('list', {phone: String, pkey: String}, 'pkeys');
 
-app.get('/addfile/:filename', function(req, res) {
+/*app.get('/addfile/:filename', function(req, res) {
   //res.render('respond with a resource');
     N = 256;
     s = new Array(N+1).join((Math.random().toString(36)+'00000000000000000').slice(2, 18)).slice(0, N);
@@ -62,11 +60,22 @@ app.get('/addfile/:filename', function(req, res) {
 
     res.render("addfile", {name: req.params.filename})
 });
+*/
 
-//app.use('/sendtoken', sendtoken);
+app.get('/register', function (req, res) {
+    doc = {phone: req.query.phone, pkey: req.query.pubkey};
+    connection.collection('pkeys').insert(doc, function (err){
+
+    });
+});
+
+app.get("/getkey", function (req, res) {
+    mongoose.model('list').find({pn: req.query.phone}, function(err, results){
+        res.send(results[0].pubkey);
+    });
+});
 
 app.use('/', routes);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

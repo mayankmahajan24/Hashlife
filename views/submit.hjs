@@ -5,6 +5,6 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>{{ name }} added</h1>
+    <h1>{{ phonenumber }} added to database. You will receive a token shortly</h1>
   </body>
 </html>
