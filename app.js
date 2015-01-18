@@ -76,8 +76,6 @@ app.get('/register', function (req, res) {
          
          res.send({0: "Success"});
          return;
-
-
         }
 
         else {
@@ -95,9 +93,9 @@ app.get('/register', function (req, res) {
 app.get("/getkey", function (req, res) {
     mongoose.model('list').find({phone: req.query.phone}, function(err, results){
         if (results.length == 0)
-            res.send({0: "Number not found"});
+            res.send({0: "failed"});
         else{
-            res.send(results[0].pkey);
+            res.send({0: results[0].pkey);
             }
         return;
 
