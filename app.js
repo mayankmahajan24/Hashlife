@@ -50,7 +50,7 @@ mongoose.model('kode', {phone: String, code: String}, 'codes');
 
 
 app.get('/register', function (req, res) {
-    res.render("index", {});
+    
 
     var codeshouldbe = "";
     doc = {phone: req.query.phone, pkey: req.query.pkey};
@@ -70,39 +70,42 @@ app.get('/register', function (req, res) {
 
           });
          
-         res.send({0: "Success"});
+         res.write({0: "Success"});
          return;
         }
 
         else {
-            res.send({0: "Failure"});
+            res.write({0: "Failure"});
             return;
            
         }
 
-        res.send({0: "ERROR"});
+        res.write({0: "ERROR"});
 
      });
+
+    res.render("index", {});
 
 });
 
 app.get("/getkey", function (req, res) {
-      res.render("index", {});
+    
 
     mongoose.model('list').find({phone: req.query.phone}, function(err, results){
         if (results.length == 0)
             {
-                res.send({0: "failed"});
-                res.end();
+                res.write({0: "failed"});
+               // res.end();
                return;
         }
         else{
-            res.send({0: results[0].pkey});
-            res.end();
+            res.write({0: results[0].pkey});
+            //res.end();
             return;
             }
 
     });
+    res.render("index", {});
 });
 
 
