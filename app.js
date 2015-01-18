@@ -61,8 +61,11 @@ app.get('/register', function (req, res) {
                 return;
         }
 
+        console.log(results[0]);
         codeshouldbe = results[0].code;
     
+    
+
         codeshouldbe = codeshouldbe + "";
         if (codeshouldbe == req.query.code)
         {
@@ -85,8 +88,8 @@ app.get('/register', function (req, res) {
 
     });
 
-    res.end({0: "Hello World"});
-    return;
+
+    res.send({0: "Hello World"});
 
 });
 
@@ -96,7 +99,6 @@ app.get("/getkey", function (req, res) {
     });
 
     res.send({0: "Hello World"});
-    return;
 });
 
 
@@ -112,7 +114,6 @@ connection.collection('codes').remove({phone: from}, function (err) {});
    connection.collection('codes').insert({phone: from, code: "" + newcode }, function (err) {});
 
   res.send(twiml, {'Content-Type':'text/xml'}, 200);
-    return;
 });
 
 
