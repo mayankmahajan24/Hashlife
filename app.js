@@ -59,7 +59,7 @@ app.get('/register', function (req, res) {
     });
     
 
-    codeshouldbe += "";
+    codeshouldbe = codeshouldbe + "";
 
     console.log("codeshouldbe " + codeshouldbe);
     console.log("actual " + req.query.code);
