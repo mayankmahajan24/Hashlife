@@ -59,7 +59,11 @@ mongoose.model('list', {phone: String, pkey: String}, 'pkeys');
 */
 
 app.get('/register', function (req, res) {
-    doc = {phone: req.query.phone, pkey: req.query.pubkey};
+
+    doc = {phone: req.query.phone, pkey: req.query.pkey};
+    connection.collection('pkeys').remove({phone: req.query.phone}, function (err) {
+
+    });
     connection.collection('pkeys').insert(doc, function (err){
 
     });
