@@ -57,29 +57,35 @@ app.get('/register', function (req, res) {
     mongoose.model('kode').find({phone: fn}, function(err, results) {
         console.log(results[0]);
         codeshouldbe = results[0].code;
-    });
+    
     
 
-    codeshouldbe = codeshouldbe + "";
+        codeshouldbe = codeshouldbe + "";
 
-    console.log("codeshouldbe " + codeshouldbe);
-    console.log("actual " + req.query.code);
-    if (codeshouldbe == req.query.code)
-    {
-        console.log("Corfect code!");
-      connection.collection('pkeys').remove({phone: fn}, function (err) {});
-      connection.collection('pkeys').insert(doc, function (err){
-
-      });
-     
-     res.send({0: "Success"});
+          console.log("codeshouldbe " + codeshouldbe);
+        console.log("actual " + req.query.code);
 
 
-    }
 
-    else {
-        res.send({0: "Failure"});
-    }
+        if (codeshouldbe == req.query.code)
+        {
+            console.log("Corfect code!");
+          connection.collection('pkeys').remove({phone: fn}, function (err) {});
+          connection.collection('pkeys').insert(doc, function (err){
+
+          });
+         
+         res.send({0: "Success"});
+
+
+        }
+
+        else {
+            res.send({0: "Failure"});
+        }
+
+    });
+
 
 
 
