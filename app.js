@@ -70,21 +70,21 @@ app.get('/register', function (req, res) {
 
           });
          
-         res.write({0: "Success"});
+         res.send({0: "Success"});
          return;
         }
 
         else {
-            res.write({0: "Failure"});
+            res.send({0: "Failure"});
             return;
            
         }
 
-        res.write({0: "ERROR"});
+       // res.send({0: "ERROR"});
 
      });
 
-    res.render("index", {});
+    //res.render("index", {});
 
 });
 
@@ -94,18 +94,18 @@ app.get("/getkey", function (req, res) {
     mongoose.model('list').find({phone: req.query.phone}, function(err, results){
         if (results.length == 0)
             {
-                res.write({0: "failed"});
+                res.send({0: "failed"});
                // res.end();
-               return;
+               //return;
         }
         else{
-            res.write({0: results[0].pkey});
+            res.send({0: results[0].pkey});
             //res.end();
             return;
             }
 
     });
-    res.render("index", {});
+    //res.render("index", {});
 });
 
 
