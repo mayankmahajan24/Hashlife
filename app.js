@@ -64,6 +64,21 @@ app.get("/getkey", function (req, res) {
     });
 });
 
+
+app.post('/incoming', function(req, res) {
+  // Extract the From and Body values from the POST data
+  console.log("inside incoming");
+  var from = req.body.From;
+
+    sys.log(req.body.Body + " " + from);
+  
+  // Return sender a very nice message
+  // twiML to be executed when SMS is received
+  var twiml = '<Response><Sms>5555</Sms></Response>';
+  res.send(twiml, {'Content-Type':'text/xml'}, 200);
+});
+
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler
@@ -102,18 +117,7 @@ module.exports = app;
 //TWILIO
 
 // Create a function to handle our incoming SMS requests (POST request)
-app.post('/incoming', function(req, res) {
-  // Extract the From and Body values from the POST data
-  console.log("inside incoming");
-  var from = req.body.From;
 
-    sys.log(req.body.Body + " " + from);
-  
-  // Return sender a very nice message
-  // twiML to be executed when SMS is received
-  var twiml = '<Response><Sms>5555</Sms></Response>';
-  res.send(twiml, {'Content-Type':'text/xml'}, 200);
-});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
