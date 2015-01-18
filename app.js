@@ -89,6 +89,7 @@ app.get('/register', function (req, res) {
 
         else {
             res.send({0: "Failure"});
+            res.end();
             return;
         }
 
