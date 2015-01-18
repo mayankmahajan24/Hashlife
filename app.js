@@ -52,10 +52,7 @@ mongoose.model('kode', {phone: String, code: String}, 'codes');
 app.get('/register', function (req, res) {
 
     doc = {phone: req.query.phone, pkey: req.query.pkey};
-    console.log("+" + req.query.phone);
     var fn = "+" + req.query.phone;
-
-
     mongoose.model('kode').find({phone: fn}, function(err, results) {
         console.log(results);
         var codeshouldbe = results[0].code;
@@ -64,19 +61,22 @@ app.get('/register', function (req, res) {
 
     if (codeshouldbe == req.query.code)
     {
-      connection.collection('pkeys').remove({phone: fn}, function (err) {
-
-     });
+        console.log("Corfect code!");
+      connection.collection('pkeys').remove({phone: fn}, function (err) {});
       connection.collection('pkeys').insert(doc, function (err){
 
       });
+     
      res.send({0: "Success"});
+
 
     }
 
     else {
         res.send({0: "Failure"});
     }
+
+
 
 });
 
