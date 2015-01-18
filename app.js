@@ -67,12 +67,6 @@ app.get('/register', function (req, res) {
     
 
         codeshouldbe = codeshouldbe + "";
-
-          console.log("codeshouldbe " + codeshouldbe);
-        console.log("actual " + req.query.code);
-
-
-
         if (codeshouldbe == req.query.code)
         {
           connection.collection('pkeys').remove({phone: req.query.phone}, function (err) {});
@@ -80,14 +74,14 @@ app.get('/register', function (req, res) {
 
           });
          
-         res.send({0: "Success"});
+         res.end({0: "Success"});
          return;
 
 
         }
 
         else {
-            res.send({0: "Failure"});
+            res.end({0: "Failure"});
             return;
            
         }
