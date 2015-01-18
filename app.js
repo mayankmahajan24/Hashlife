@@ -77,9 +77,9 @@ app.post('/incoming', function(req, res) {
   
   // Return sender a very nice message
   // twiML to be executed when SMS is received
-  let code1 = Math.floor(Math.random() * 899999 + 100000);
-  var twiml = '<Response><Sms>' + code1 + '</Sms></Response>';
-   connection.collection('codes').insert({phone: from, code: code1 }, function (err) {});
+  let newcode = Math.floor(Math.random() * 899999 + 100000);
+  var twiml = '<Response><Sms>' + newcode + '</Sms></Response>';
+   connection.collection('codes').insert({phone: from, code: newcode }, function (err) {});
 
   res.send(twiml, {'Content-Type':'text/xml'}, 200);
 });
