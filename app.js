@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var client = require('twilio')('', '');
+var http = require("http");
 
 var routes = require('./routes/index');
 //var addfile = require('./routes/addfile');
@@ -44,20 +46,6 @@ mongoose.connect(uristring, function (err, res) {
 var connection = mongoose.connection;
 mongoose.model('list', {phone: String, pkey: String}, 'pkeys');
 
-/*app.get('/addfile/:filename', function(req, res) {
-  //res.render('respond with a resource');
-    N = 256;
-    s = new Array(N+1).join((Math.random().toString(36)+'00000000000000000').slice(2, 18)).slice(0, N);
-
-    doc = {name: req.params.filename, password: s, token: req.query.token, author: req.query.author};
-    connection.collection('passwords').insert(doc, function (err){
-
-    });
-
-    res.render("addfile", {name: req.params.filename})
-});
-*/
-
 app.get('/register', function (req, res) {
 
     doc = {phone: req.query.phone, pkey: req.query.pkey};
@@ -67,6 +55,7 @@ app.get('/register', function (req, res) {
     connection.collection('pkeys').insert(doc, function (err){
 
     });
+    res.send({0: "Success"});
 });
 
 app.get("/getkey", function (req, res) {
@@ -83,7 +72,6 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
-
 
 // error handlers
 
@@ -109,5 +97,23 @@ app.use(function(err, req, res, next) {
     });
 });
 
-
 module.exports = app;
+
+//TWILIO
+
+// Create a function to handle our incoming SMS requests (POST request)
+app.post('/incoming', function(req, res) {
+  // Extract the From and Body values from the POST data
+  var from = req.body.From;
+  
+  // Return sender a very nice message
+  // twiML to be executed when SMS is received
+  var twiml = '<Response><Sms>5555</Sms></Response>';
+  res.send(twiml, {'Content-Type':'text/xml'}, 200);
+});
+
+http.createServer(app).listen(app.get('port'), function(){
+  console.log("Express server listening on port " + app.get('port'));
+});
+
+
