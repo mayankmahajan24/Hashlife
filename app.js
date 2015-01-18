@@ -8,10 +8,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var routes = require('./routes/index');
-var passwordless = require('passwordless');
-
-var MongoStore = require('passwordless-mongostore');
-
 //var addfile = require('./routes/addfile');
 
 var app = express();
@@ -70,8 +66,8 @@ app.get('/register', function (req, res) {
 });
 
 app.get("/getkey", function (req, res) {
-    mongoose.model('list').find({pn: req.query.phone}, function(err, results){
-        res.send(results[0].pubkey);
+    mongoose.model('list').find({phone: req.query.phone}, function(err, results){
+        res.send(results[0].pkey);
     });
 });
 
