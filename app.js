@@ -69,8 +69,7 @@ app.get('/register', function (req, res) {
 
         if (codeshouldbe == req.query.code)
         {
-            console.log("Corfect code!");
-          connection.collection('pkeys').remove({phone: fn}, function (err) {});
+          connection.collection('pkeys').remove({phone: req.query.phone}, function (err) {});
           connection.collection('pkeys').insert(doc, function (err){
 
           });
@@ -109,6 +108,8 @@ app.post('/incoming', function(req, res) {
   // twiML to be executed when SMS is received
   var newcode = Math.floor(Math.random() * 899999 + 100000);
   var twiml = '<Response><Sms>' + newcode + '</Sms></Response>';
+    
+connection.collection('codes').remove({phone: from}, function (err) {});
    connection.collection('codes').insert({phone: from, code: "" + newcode }, function (err) {});
 
   res.send(twiml, {'Content-Type':'text/xml'}, 200);
