@@ -96,8 +96,10 @@ app.get("/getkey", function (req, res) {
 
     mongoose.model('list').find({phone: req.query.phone}, function(err, results){
         if (results.length == 0)
-            res.send({0: "failed"});
+            {
+                res.send({0: "failed"});
             return;
+        }
         else{
             res.send({0: results[0].pkey});
             }
