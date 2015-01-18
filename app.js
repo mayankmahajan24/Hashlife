@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-mongoose.connect('mongodb://127.0.0.1/mobiledata');
+//mongoose.connect('mongodb://127.0.0.1/mobiledata');
 
 mongoose.connect(uristring, function (err, res) {
   if (err) {
