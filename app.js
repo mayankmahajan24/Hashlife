@@ -55,9 +55,9 @@ app.get('/register', function (req, res) {
     var fn = "+" + req.query.phone;
     mongoose.model('kode').find({phone: fn}, function(err, results) {
         var codeshouldbe = results[0].code;
-
+        console.log("end" + results + " codeshouldbe " + codeshouldbe);
     });
-
+    console.log("begin!");  
     console.log("codeshouldbe is " + codeshouldbe + " actually is " + req.query.code);
     if (codeshouldbe == req.query.code)
     {
