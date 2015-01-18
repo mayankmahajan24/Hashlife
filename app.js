@@ -94,10 +94,14 @@ app.get('/register', function (req, res) {
 
 app.get("/getkey", function (req, res) {
     mongoose.model('list').find({phone: req.query.phone}, function(err, results){
-        res.send(results[0].pkey);
-    });
+        if (results.length == 0)
+            res.send({0: "Number not found"});
+        else{
+            res.send(results[0].pkey);
+            }
+        return;
 
-    res.send({0: "Hello World"});
+    });
 });
 
 
